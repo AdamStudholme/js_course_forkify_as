@@ -4,12 +4,12 @@ import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
+import shoppingListView from './views/shoppingListView.js';
 import addRecipeView from './views/addRecipeView.js';
 import { MODAL_CLOSE_SEC } from './config.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import shoppingListView from './views/shoppingListView.js';
 
 if (module.hot) {
   module.hot.accept();
@@ -24,7 +24,7 @@ const controlRecipes = async function () {
 
     //0) Update results view to mark selected recipe
     resultsView.update(model.getSearchResultsPage());
-    bookmarksView.update(model.state.bookmarks);
+    // bookmarksView.update(model.state.bookmarks);
     //1) Loading Recipe
     await model.loadRecipe(id);
     const { recipe } = model.state;

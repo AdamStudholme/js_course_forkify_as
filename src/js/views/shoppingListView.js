@@ -12,19 +12,22 @@ class shoppingListView extends View {
   }
 
   _generateMarkup() {
+    console.log(this._data);
+
     return this._data
       .map(
         item =>
-          `<li class="preview">
-                  <a class="preview__link" href="#23456">
-                    <figure class="preview__fig">
-                      <img src="src/img/test-1.jpg" alt="Test" />
-                    </figure>
-                    <div class="preview__data">
-                      <h4 class="preview__name">
-                        Pasta with Tomato Cream ...
+          `<li class="shopping-item">
+                  <a class="shopping-item__link" href="#">
+                    <div class="shopping-item__data">
+                      <h4 class="shopping-item__name">
+                        ${item.item}
                       </h4>
-                      <p class="preview__publisher">The Pioneer Woman</p>
+                      <p class="shopping-item__publisher">${
+                        item.quantity !== null
+                          ? item.quantity + ' ' + item.unit
+                          : ''
+                      }</p>
                     </div>
                   </a>
                 </li> `

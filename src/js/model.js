@@ -148,5 +148,13 @@ export const uploadRecipe = async function (newRecipe) {
 };
 
 export const addIngredientsToList = function () {
-  state.recipe.ingredients.forEach(ing => state.shoppingList.push(ing));
+  state.recipe.ingredients.forEach(ing => {
+    const item = {
+      quantity: ing.quantity,
+      unit: ing.unit,
+      item: ing.description,
+      purchased: false,
+    };
+    return state.shoppingList.push(item);
+  });
 };
