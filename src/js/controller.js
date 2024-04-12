@@ -9,6 +9,7 @@ import { MODAL_CLOSE_SEC } from './config.js';
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import shoppingListView from './views/shoppingListView.js';
 
 if (module.hot) {
   module.hot.accept();
@@ -82,6 +83,17 @@ const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlShopping = function () {
+  bookmarksView.render(model.state.shoppingList);
+};
+
+controlAddShopping = function () {
+  //1) add ingredients to state.model.shoppingList
+  model.addIngredientsToList();
+  // 2) render shopping list
+  shoppingListView.render(model.state.shoppingList);
+};
+
 const controlAddRecipe = async function (newRecipe) {
   try {
     //Show loading spinner
@@ -117,6 +129,8 @@ const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
+  recipeView.addHandlerAddToShopping(controlAddShopping);
+  shoppingListView.addHandlerRender(controlShopping);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerPagination(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);

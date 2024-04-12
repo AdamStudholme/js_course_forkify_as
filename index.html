@@ -37,21 +37,35 @@
         <nav class="nav">
           <ul class="nav__list">
             <li class="nav__item">
-              <button class="nav__btn nav__btn--view-shopping">
-                <!-- <img src="src/img/list-icon.png" alt="shopping_list_icon" /> -->
-                <svg class="nav__icon">
-                  <use href="src/img/icons.svg#icon-shopping-list"></use>
-                </svg>
-                <span>Shopping List</span>
-              </button>
-            </li>
-            <li class="nav__item">
               <button class="nav__btn nav__btn--add-recipe">
                 <svg class="nav__icon">
                   <use href="src/img/icons.svg#icon-edit"></use>
                 </svg>
                 <span>Add recipe</span>
               </button>
+            </li>
+            <li class="nav__item">
+              <button class="nav__btn nav__btn--shopping-list">
+                <svg class="nav__icon">
+                  <use href="src/img/icons.svg#icon-shopping-list"></use>
+                </svg>
+                <span>Shopping List</span>
+              </button>
+              <div class="shopping-list">
+                <ul class="shopping-list__list">
+                  <div class="message">
+                    <div>
+                      <svg>
+                        <use href="src/img/icons.svg#icon-smile"></use>
+                      </svg>
+                    </div>
+                    <p>
+                      No ingredients yet. Find a nice recipe and add to shopping
+                      :)
+                    </p>
+                  </div>
+                </ul>
+              </div>
             </li>
             <li class="nav__item">
               <button class="nav__btn nav__btn--bookmarks">

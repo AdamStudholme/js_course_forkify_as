@@ -146,3 +146,7 @@ export const uploadRecipe = async function (newRecipe) {
     throw err;
   }
 };
+
+export const addIngredientsToList = function () {
+  state.recipe.ingredients.forEach(ing => state.shoppingList.push(ing));
+};
