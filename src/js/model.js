@@ -105,6 +105,8 @@ export const deleteBookmark = function (id) {
 const init = function () {
   const storage = localStorage.getItem('bookmarks');
   if (storage) state.bookmarks = JSON.parse(storage);
+  const shoppingListStorage = localStorage.getItem('shoppingList');
+  if (shoppingListStorage) state.shoppingList = JSON.parse(shoppingListStorage);
 };
 
 init();
@@ -147,6 +149,10 @@ export const uploadRecipe = async function (newRecipe) {
   }
 };
 
+const persistShoppingList = function () {
+  localStorage.setItem('shoppingList', JSON.stringify(state.shoppingList));
+};
+
 export const addIngredientsToList = function () {
   state.recipe.ingredients.forEach(ing => {
     const item = {
@@ -155,6 +161,8 @@ export const addIngredientsToList = function () {
       item: ing.description,
       purchased: false,
     };
-    return state.shoppingList.push(item);
+    state.shoppingList.push(item);
+    persistShoppingList();
+    return state.shoppingList;
   });
 };
