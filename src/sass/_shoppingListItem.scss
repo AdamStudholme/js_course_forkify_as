@@ -57,9 +57,22 @@
   &__data {
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 2rem;
+    grid-template-columns: 0.75fr 0.5fr 4fr 0.75fr;
     row-gap: 0.1rem;
-    align-items: center;
+    // align-items: center;
+  }
+
+  &__name {
+    font-size: 1.45rem;
+    color: $color-primary;
+    text-transform: uppercase;
+    font-weight: 600;
+
+    // This is how text is truncated!
+    text-overflow: ellipsis;
+    max-width: 25rem;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   &__title {
@@ -76,11 +89,21 @@
     overflow: hidden;
   }
 
-  &__publisher {
+  &__unit {
     font-size: 1.15rem;
     color: $color-grey-dark-2;
     text-transform: uppercase;
     font-weight: 600;
+  }
+  &__quantity {
+    font-size: 1.15rem;
+    color: $color-grey-dark-2;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  &__checkbox {
+    fill: $color-grey-dark-2;
   }
 
   &__user-generated {

@@ -24,7 +24,7 @@ const controlRecipes = async function () {
 
     //0) Update results view to mark selected recipe
     resultsView.update(model.getSearchResultsPage());
-    // bookmarksView.update(model.state.bookmarks);
+    bookmarksView.update(model.state.bookmarks);
     //1) Loading Recipe
     await model.loadRecipe(id);
     const { recipe } = model.state;
@@ -84,7 +84,7 @@ const controlBookmarks = function () {
 };
 
 const controlShopping = function () {
-  bookmarksView.render(model.state.shoppingList);
+  shoppingListView.render(model.state.shoppingList);
 };
 
 controlAddShopping = function () {

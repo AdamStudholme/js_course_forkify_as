@@ -18,16 +18,18 @@ class shoppingListView extends View {
       .map(
         item =>
           `<li class="shopping-item">
-                  <a class="shopping-item__link" href="#">
-                    <div class="shopping-item__data">
+                  <a class="shopping-item__link" href="">
+                    <div class="shopping-item__data" title =${item.item}>
+                      <p class="shopping-item__quantity">${
+                        item.quantity !== null ? item.quantity : ''
+                      }</p>
+                      <p class="shopping-item__unit">${
+                        item.unit !== null ? item.unit : ''
+                      }</p>
                       <h4 class="shopping-item__name">
                         ${item.item}
                       </h4>
-                      <p class="shopping-item__publisher">${
-                        item.quantity !== null
-                          ? item.quantity + ' ' + item.unit
-                          : ''
-                      }</p>
+                      <input type="checkbox" checked="checked" class="shopping-checkbox">                        
                     </div>
                   </a>
                 </li> `
