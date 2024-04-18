@@ -13,6 +13,9 @@ export const state = {
   },
   bookmarks: [],
   shoppingList: [],
+  filters: {
+    hideCompleteShopping: false,
+  },
 };
 
 const createRecipeObject = function (data) {
@@ -156,6 +159,7 @@ const persistShoppingList = function () {
 export const addIngredientsToList = function () {
   state.recipe.ingredients.forEach(ing => {
     const item = {
+      id: self.crypto.randomUUID(),
       quantity: ing.quantity,
       unit: ing.unit,
       item: ing.description,
@@ -165,4 +169,22 @@ export const addIngredientsToList = function () {
     persistShoppingList();
     return state.shoppingList;
   });
+};
+
+export const toggleShoppingItem = function (itemId) {
+  const item = state.shoppingList.find(i => i.id === itemId);
+  item.purchased = !item.purchased;
+  persistShoppingList();
+};
+
+export const ClearShoppingList = function () {
+  state.shoppingList = [];
+  persistShoppingList();
+};
+
+export const filterShoppingList = function () {
+  state.filters.hideCompleteShopping = !state.filters.hideCompleteShopping;
+  if (state.filters.hideCompleteShopping)
+    return state.shoppingList.filter(item => !item.purchased);
+  return state.shoppingList;
 };
