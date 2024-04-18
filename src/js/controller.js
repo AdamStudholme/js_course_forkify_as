@@ -4,6 +4,7 @@ import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
 import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
+import shoppingListView from './views/shoppingListView.js';
 import addRecipeView from './views/addRecipeView.js';
 import { MODAL_CLOSE_SEC } from './config.js';
 
@@ -82,6 +83,17 @@ const controlBookmarks = function () {
   bookmarksView.render(model.state.bookmarks);
 };
 
+const controlShopping = function () {
+  shoppingListView.render(model.state.shoppingList);
+};
+
+controlAddShopping = function () {
+  //1) add ingredients to state.model.shoppingList
+  model.addIngredientsToList();
+  // 2) render shopping list
+  shoppingListView.render(model.state.shoppingList);
+};
+
 const controlAddRecipe = async function (newRecipe) {
   try {
     //Show loading spinner
@@ -112,11 +124,33 @@ const controlAddRecipe = async function (newRecipe) {
   }
 };
 
+const controlItemComplete = function (itemId) {
+  model.toggleShoppingItem(itemId);
+};
+
+const controlHideComplete = function () {
+  const list = model.filterShoppingList();
+  console.log('filtered list: ', list);
+  console.log('full list: ', model.state.shoppingList);
+
+  shoppingListView.render(list);
+};
+
+const controlClearShoppingList = function () {
+  model.ClearShoppingList();
+  shoppingListView.render(model.state.shoppingList);
+};
+
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
+  shoppingListView.addHandlerRender(controlShopping);
+  shoppingListView.addHandlerMarkComplete(controlItemComplete);
+  shoppingListView.addHandlerClearList(controlClearShoppingList);
+  shoppingListView.addHandlerHideComplete(controlHideComplete);
   recipeView.addHandlerUpdateServings(controlServings);
   recipeView.addHandlerAddBookmark(controlAddBookmark);
+  recipeView.addHandlerAddToShopping(controlAddShopping);
   searchView.addHandlerSearch(controlSearchResults);
   paginationView.addHandlerPagination(controlPagination);
   addRecipeView.addHandlerUpload(controlAddRecipe);

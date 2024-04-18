@@ -12,6 +12,10 @@ export const state = {
     resultsPerPage: RESULTS_PAGINATION,
   },
   bookmarks: [],
+  shoppingList: [],
+  filters: {
+    hideCompleteShopping: false,
+  },
 };
 
 const createRecipeObject = function (data) {
@@ -104,6 +108,8 @@ export const deleteBookmark = function (id) {
 const init = function () {
   const storage = localStorage.getItem('bookmarks');
   if (storage) state.bookmarks = JSON.parse(storage);
+  const shoppingListStorage = localStorage.getItem('shoppingList');
+  if (shoppingListStorage) state.shoppingList = JSON.parse(shoppingListStorage);
 };
 
 init();
@@ -144,4 +150,41 @@ export const uploadRecipe = async function (newRecipe) {
   } catch (err) {
     throw err;
   }
+};
+
+const persistShoppingList = function () {
+  localStorage.setItem('shoppingList', JSON.stringify(state.shoppingList));
+};
+
+export const addIngredientsToList = function () {
+  state.recipe.ingredients.forEach(ing => {
+    const item = {
+      id: self.crypto.randomUUID(),
+      quantity: ing.quantity,
+      unit: ing.unit,
+      item: ing.description,
+      purchased: false,
+    };
+    state.shoppingList.push(item);
+    persistShoppingList();
+    return state.shoppingList;
+  });
+};
+
+export const toggleShoppingItem = function (itemId) {
+  const item = state.shoppingList.find(i => i.id === itemId);
+  item.purchased = !item.purchased;
+  persistShoppingList();
+};
+
+export const ClearShoppingList = function () {
+  state.shoppingList = [];
+  persistShoppingList();
+};
+
+export const filterShoppingList = function () {
+  state.filters.hideCompleteShopping = !state.filters.hideCompleteShopping;
+  if (state.filters.hideCompleteShopping)
+    return state.shoppingList.filter(item => !item.purchased);
+  return state.shoppingList;
 };
