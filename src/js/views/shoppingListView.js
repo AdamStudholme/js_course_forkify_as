@@ -6,7 +6,6 @@ class shoppingListView extends View {
   _parentElement = document.querySelector('.shopping-list__list');
   _errorMessage = `No recipes added to list yet. Find a recipe and to shopping!`;
   _message = '';
-  _completeShoppingList = true;
 
   addHandlerRender(handler) {
     window.addEventListener('load', handler);
@@ -25,9 +24,6 @@ class shoppingListView extends View {
     this._parentElement.addEventListener('click', function (e) {
       const btn = e.target.closest('.shopping-list__hide-complete');
       if (!btn) return;
-      this._completeShoppingList = !this._completeShoppingList;
-      console.log(this._completeShoppingList);
-
       handler();
     });
   }
@@ -44,17 +40,13 @@ class shoppingListView extends View {
     <div class="shopping-list__controls ${!this._data ? 'hidden' : ''}">
       <div>        
         <button class="btn shopping-list__btn shopping-list__hide-complete">         
-            <span>${
-              this._completeShoppingList ? 'Hide Completed' : 'Show All'
-            }</span>
-          </button>
+          Hide Completed
+        </button>
       </div>
       <div>        
-        <button class="btn shopping-list__btn shopping-list__clear">         
-            <span>
-              Clear List
-            </span>
-          </button>
+        <button class="btn shopping-list__btn shopping-list__clear">    
+          Clear List 
+        </button>
       </div>     
     </div>
     `;

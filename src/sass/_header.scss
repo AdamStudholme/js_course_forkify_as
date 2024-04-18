@@ -179,6 +179,18 @@
     }
   }
 
+  &__controls {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5%;
+  }
+
+  &__btn {
+    font-weight: 600;
+    font-size: small;
+    font-family: $font-primary;
+  }
+
   &:hover,
   .nav__btn--shopping-list:hover + & {
     visibility: visible;
