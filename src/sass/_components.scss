@@ -158,6 +158,15 @@
   font-weight: 700;
   color: $color-primary;
   text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-align: center;
+  // transform: skewY(-3deg);
+}
+
+.heading--3 {
+  font-size: 1.5rem;
+  font-weight: 5000;
+  color: $color-grey-dark-1;
   margin-bottom: 2.5rem;
   text-align: center;
   // transform: skewY(-3deg);
