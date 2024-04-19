@@ -5,13 +5,23 @@ class SearchView extends View {
   _parentElement = document.querySelector('.search');
 
   getQuery() {
-    const query = this._parentElement.querySelector('.search__field').value;
+    const search = {
+      search: this._parentElement.querySelector('.search__field').value,
+      maxDuration: this._parentElement.querySelector('.search-max-duration')
+        .value,
+      maxIngredients: this._parentElement.querySelector(
+        '.search-max-ingredients'
+      ).value,
+    };
     this._clearInput();
-    return query;
+    return search;
   }
 
   _clearInput() {
-    this._parentElement.querySelector('.search__field').value = '';
+    this._parentElement.querySelector('.search-max-ingredients').value =
+      this._parentElement.querySelector('.search-max-duration').value =
+      this._parentElement.querySelector('.search__field').value =
+        '';
   }
 
   addHandlerSearch(handler) {

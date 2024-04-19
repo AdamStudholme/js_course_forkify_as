@@ -51,8 +51,10 @@ export const loadRecipe = async function (id) {
 
 export const loadSearchResults = async function (query) {
   try {
-    state.search.query = query;
+    state.search.query = query.search;
     const data = await AJAX(`${API_URL}?search=${query}&key=${API_KEY}`);
+    console.log(data.data);
+
     state.search.results = data.data.recipes.map(rec => {
       return {
         id: rec.id,
@@ -67,6 +69,9 @@ export const loadSearchResults = async function (query) {
   } catch (err) {
     throw err;
   }
+  console.log(state.search.results);
+  // if (query.maxDuration) state.search.results.filter(rec => rec === rec);
+  // if (query.maxIngredients) state.search.results.filter(rec => rec === rec);
 };
 
 export const getSearchResultsPage = function (page = state.search.page) {
