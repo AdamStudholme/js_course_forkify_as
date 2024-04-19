@@ -110,7 +110,7 @@ class RecipeView extends View {
           <h2 class="heading--2">Recipe ingredients </h2>          
           <h3 class="heading--3">${this._data.calories.amount}${
       this._data.calories.unit
-    } per serving ($)
+    } per serving
           </h3> 
           <ul class="recipe__ingredient-list">
         
