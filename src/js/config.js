@@ -1,6 +1,8 @@
-import { SPOON_API_KEY } from './secrets';
 //File that contains all the global variables for the project are required throughout the project
+export const FORK_API_KEY = process.env.FORK_API_KEY;
 
+//API key for Spoonacular, API stored in 1Password and Netlify
+export const SPOON_API_KEY = process.env.SPOON_API_KEY;
 // https://forkify-api.herokuapp.com/v2
 //recipe API url root
 export const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes';

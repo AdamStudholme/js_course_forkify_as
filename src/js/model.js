@@ -1,5 +1,5 @@
 import { API_URL, SPOON_ANALYZE_POST_URL } from './config.js';
-import { FORK_API_KEY } from './secrets.js';
+import { FORK_API_KEY } from './config.js';
 import { RESULTS_PAGINATION } from './config.js';
 // import { getJSON, sendJSON } from './helpers.js';
 import { AJAX } from './helpers.js';
