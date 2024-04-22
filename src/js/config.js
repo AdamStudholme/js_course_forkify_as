@@ -8,7 +8,7 @@ export const SPOON_API_KEY = process.env.SPOON_API_KEY;
 //recipe API url root
 export const API_URL = 'https://forkify-api.herokuapp.com/api/v2/recipes';
 
-export const SPOON_ANALYZE_POST_URL = `https://api.spoonacular.com/recipes/analyze?apiKey=${SPOON_API_KEY}&language=en&includeNutrition=true`;
+export const SPOON_ANALYZE_POST_URL = `https://api.spoonacular.com/recipes/analyze?language=en&includeNutrition=true`;
 
 export const TIMEOUT_SEC = 10;
 export const RESULTS_PAGINATION = 10;
