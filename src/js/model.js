@@ -2,7 +2,7 @@ import { API_URL, SPOON_ANALYZE_POST_URL } from './config.js';
 import { FORK_API_KEY } from './config.js';
 import { RESULTS_PAGINATION } from './config.js';
 // import { getJSON, sendJSON } from './helpers.js';
-import { AJAX } from './helpers.js';
+import { AJAX, SPOON_AJAX } from './helpers.js';
 
 export const state = {
   recipe: {},
@@ -45,7 +45,7 @@ const loadRecipeNutrition = async function (incTaste = false) {
       ),
       instructions: 'none',
     };
-    const data = await AJAX(
+    const data = await SPOON_AJAX(
       `${SPOON_ANALYZE_POST_URL}&includeTaste=${incTaste}`,
       recipeDetails
     );

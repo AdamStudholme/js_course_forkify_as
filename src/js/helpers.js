@@ -27,6 +27,27 @@ export const AJAX = async function (url, uploadData = undefined) {
     throw err;
   }
 };
+
+export const SPOON_AJAX = async function (url, uploadData = undefined) {
+  try {
+    const fetchPro = uploadData
+      ? fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': '54a851f5e8694276a21dc99381c2cbdc',
+          },
+          body: JSON.stringify(uploadData),
+        })
+      : fetch(url);
+    const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]); // Use timeout function to throw error for a long load
+    const data = await res.json();
+    if (!res.ok) throw new Error(`${data.message} (Error ${res.status})`);
+    return data;
+  } catch (err) {
+    throw err;
+  }
+};
 /*
 export const getJSON = async function (url) {
   try {
