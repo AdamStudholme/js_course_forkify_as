@@ -1,5 +1,5 @@
 node_modules
 dist
-secrets.js
+tempSecrets.js
 .parcel-cache
 .DS_Store
