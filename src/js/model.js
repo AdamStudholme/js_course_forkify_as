@@ -1,4 +1,4 @@
-import { API_KEY, API_URL, SPOON_ANALYZE_POST_URL } from './config.js';
+import { FORK_API_KEY, API_URL, SPOON_ANALYZE_POST_URL } from './config.js';
 import { RESULTS_PAGINATION } from './config.js';
 // import { getJSON, sendJSON } from './helpers.js';
 import { AJAX, SPOON_AJAX } from './helpers.js';
@@ -58,7 +58,7 @@ const loadRecipeNutrition = async function (incTaste = false) {
 
 export const loadRecipe = async function (id) {
   try {
-    const data = await AJAX(`${API_URL}/${id}?key=${API_KEY}`);
+    const data = await AJAX(`${API_URL}/${id}?key=${FORK_API_KEY}`);
 
     state.recipe = createRecipeObject(data);
 
@@ -76,7 +76,7 @@ export const loadRecipe = async function (id) {
 export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
-    const data = await AJAX(`${API_URL}?search=${query}&key=${API_KEY}`);
+    const data = await AJAX(`${API_URL}?search=${query}&key=${FORK_API_KEY}`);
     state.search.results = data.data.recipes.map(rec => {
       return {
         id: rec.id,
