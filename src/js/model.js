@@ -1,12 +1,13 @@
-import { API_KEY, API_URL, SPOON_ANALYZE_POST_URL } from "./config.js";
-import { RESULTS_PAGINATION } from "./config.js";
+import { API_URL, SPOON_ANALYZE_POST_URL } from './config.js';
+import { FORK_API_KEY } from './secrets.js';
+import { RESULTS_PAGINATION } from './config.js';
 // import { getJSON, sendJSON } from './helpers.js';
-import { AJAX } from "./helpers.js";
+import { AJAX } from './helpers.js';
 
 export const state = {
   recipe: {},
   search: {
-    query: "",
+    query: '',
     results: [],
     page: 1,
     resultsPerPage: RESULTS_PAGINATION,
@@ -16,6 +17,7 @@ export const state = {
   filters: {
     hideCompleteShopping: false,
   },
+  weeklyPlanner: [],
 };
 
 const createRecipeObject = function (data) {
@@ -39,9 +41,9 @@ const loadRecipeNutrition = async function (incTaste = false) {
       title: state.recipe.title,
       servings: state.recipe.servings,
       ingredients: state.recipe.ingredients.map(
-        (ing) => `${ing.quantity} ${ing.unit} ${ing.description}`
+        ing => `${ing.quantity} ${ing.unit} ${ing.description}`
       ),
-      instructions: "none",
+      instructions: 'none',
     };
     const data = await AJAX(
       `${SPOON_ANALYZE_POST_URL}&includeTaste=${incTaste}`,
@@ -59,11 +61,11 @@ const loadRecipeNutrition = async function (incTaste = false) {
 
 export const loadRecipe = async function (id) {
   try {
-    const data = await AJAX(`${API_URL}/${id}?key=${API_KEY}`);
+    const data = await AJAX(`${API_URL}/${id}?key=${FORK_API_KEY}`);
 
     state.recipe = createRecipeObject(data);
 
-    if (state.bookmarks.some((bookmark) => bookmark.id === id))
+    if (state.bookmarks.some(bookmark => bookmark.id === id))
       state.recipe.bookmarked = true;
     else state.recipe.bookmarked = false;
   } catch (err) {
@@ -77,8 +79,8 @@ export const loadRecipe = async function (id) {
 export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
-    const data = await AJAX(`${API_URL}?search=${query}&key=${API_KEY}`);
-    state.search.results = data.data.recipes.map((rec) => {
+    const data = await AJAX(`${API_URL}?search=${query}&key=${FORK_API_KEY}`);
+    state.search.results = data.data.recipes.map(rec => {
       return {
         id: rec.id,
         title: rec.title,
@@ -103,14 +105,14 @@ export const getSearchResultsPage = function (page = state.search.page) {
 };
 
 export const updateServings = function (newServings) {
-  state.recipe.ingredients.forEach((ing) => {
+  state.recipe.ingredients.forEach(ing => {
     ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
   });
   state.recipe.servings = newServings;
 };
 
 const persistBookmarks = function () {
-  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
 };
 
 export const addBookmark = function (recipe) {
@@ -122,7 +124,7 @@ export const addBookmark = function (recipe) {
 };
 export const deleteBookmark = function (id) {
   //Delete bookmark
-  const index = state.bookmarks.findIndex((el) => el.id === id);
+  const index = state.bookmarks.findIndex(el => el.id === id);
   state.bookmarks.splice(index, 1);
 
   //mark current recipe as NOT  bookmarked
@@ -131,9 +133,9 @@ export const deleteBookmark = function (id) {
 };
 
 const init = function () {
-  const storage = localStorage.getItem("bookmarks");
+  const storage = localStorage.getItem('bookmarks');
   if (storage) state.bookmarks = JSON.parse(storage);
-  const shoppingListStorage = localStorage.getItem("shoppingList");
+  const shoppingListStorage = localStorage.getItem('shoppingList');
   if (shoppingListStorage) state.shoppingList = JSON.parse(shoppingListStorage);
 };
 
@@ -141,20 +143,20 @@ init();
 
 //Function for clearing bookmarks in development
 const clearBookmarks = function () {
-  localStorage.clear("bookmarks");
+  localStorage.clear('bookmarks');
 };
 
 export const uploadRecipe = async function (newRecipe) {
   try {
     const ingredients = Object.entries(newRecipe)
       .filter(
-        (entry) => entry[0].startsWith("ingredient") && entry[1].trim() !== ""
+        entry => entry[0].startsWith('ingredient') && entry[1].trim() !== ''
       )
-      .map((ing) => {
-        const ingArr = ing[1].split(",").map((el) => el.trim());
+      .map(ing => {
+        const ingArr = ing[1].split(',').map(el => el.trim());
         if (ingArr.length !== 3)
           throw new Error(
-            "Wrong ingredient format! Please use the correct format."
+            'Wrong ingredient format! Please use the correct format.'
           );
         const [quantity, unit, description] = ingArr;
         return { quantity: quantity ? +quantity : null, unit, description };
@@ -178,11 +180,11 @@ export const uploadRecipe = async function (newRecipe) {
 };
 
 const persistShoppingList = function () {
-  localStorage.setItem("shoppingList", JSON.stringify(state.shoppingList));
+  localStorage.setItem('shoppingList', JSON.stringify(state.shoppingList));
 };
 
 export const addIngredientsToList = function () {
-  state.recipe.ingredients.forEach((ing) => {
+  state.recipe.ingredients.forEach(ing => {
     const item = {
       id: self.crypto.randomUUID(),
       quantity: ing.quantity,
@@ -197,7 +199,7 @@ export const addIngredientsToList = function () {
 };
 
 export const toggleShoppingItem = function (itemId) {
-  const item = state.shoppingList.find((i) => i.id === itemId);
+  const item = state.shoppingList.find(i => i.id === itemId);
   item.purchased = !item.purchased;
   persistShoppingList();
 };
@@ -210,6 +212,6 @@ export const ClearShoppingList = function () {
 export const filterShoppingList = function () {
   state.filters.hideCompleteShopping = !state.filters.hideCompleteShopping;
   if (state.filters.hideCompleteShopping)
-    return state.shoppingList.filter((item) => !item.purchased);
+    return state.shoppingList.filter(item => !item.purchased);
   return state.shoppingList;
 };
