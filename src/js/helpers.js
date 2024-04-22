@@ -1,4 +1,5 @@
 import { TIMEOUT_SEC } from './config';
+import { SPOON_API_KEY } from './config';
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -35,7 +36,7 @@ export const SPOON_AJAX = async function (url, uploadData = undefined) {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'x-api-key': '54a851f5e8694276a21dc99381c2cbdc',
+            'x-api-key': SPOON_API_KEY,
           },
           body: JSON.stringify(uploadData),
         })
