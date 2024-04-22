@@ -31,16 +31,14 @@ export const AJAX = async function (url, uploadData = undefined) {
 
 export const SPOON_AJAX = async function (url, uploadData = undefined) {
   try {
-    const fetchPro = uploadData
-      ? fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': SPOON_API_KEY,
-          },
-          body: JSON.stringify(uploadData),
-        })
-      : fetch(url);
+    const fetchPro = fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': SPOON_API_KEY,
+      },
+      body: JSON.stringify(recipeDetail),
+    });
     const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]); // Use timeout function to throw error for a long load
     const data = await res.json();
     if (!res.ok) throw new Error(`${data.message} (Error ${res.status})`);

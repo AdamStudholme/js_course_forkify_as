@@ -2,7 +2,8 @@ import { API_URL, SPOON_ANALYZE_POST_URL } from './config.js';
 import { FORK_API_KEY } from './config.js';
 import { RESULTS_PAGINATION } from './config.js';
 // import { getJSON, sendJSON } from './helpers.js';
-import { AJAX, SPOON_AJAX } from './helpers.js';
+import { AJAX } from './helpers.js';
+import { TIMEOUT_SEC } from './config.js';
 
 export const state = {
   recipe: {},
@@ -45,11 +46,17 @@ const loadRecipeNutrition = async function (incTaste = false) {
       ),
       instructions: 'none',
     };
-    const data = await SPOON_AJAX(
-      `${SPOON_ANALYZE_POST_URL}&includeTaste=${incTaste}`,
-      recipeDetails
-    );
-    console.log(data);
+    const fetchPro = fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': SPOON_API_KEY,
+      },
+      body: JSON.stringify(recipeDetails),
+    });
+    const res = await Promise.race([fetchPro, timeout(TIMEOUT_SEC)]); // Use timeout function to throw error for a long load
+    const data = await res.json();
+    if (!res.ok) throw new Error(`${data.message} (Error ${res.status})`);
 
     state.recipe.calories = data.nutrition.nutrients[0];
     state.recipe.diets = {};
