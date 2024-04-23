@@ -45,6 +45,14 @@
               </button>
             </li>
             <li class="nav__item">
+              <button class="nav__btn nav__btn--view-planner">
+                <svg class="nav__icon">
+                  <use href="src/img/icons.svg#icon-calandar"></use>
+                </svg>
+                <span>View Planner</span>
+              </button>
+            </li>
+            <li class="nav__item">
               <button class="nav__btn nav__btn--shopping-list">
                 <svg class="nav__icon">
                   <use href="src/img/icons.svg#icon-shopping-list"></use>
@@ -341,6 +349,21 @@
           />
         </div>
 
+        <button class="btn upload__btn">
+          <svg>
+            <use href="src/img/icons.svg#icon-upload-cloud"></use>
+          </svg>
+          <span>Upload</span>
+        </button>
+      </form>
+    </div>
+    <div class="overlay hidden"></div>
+    <div class="view-planner-window hidden">
+      <button class="btn--view-planner-close-modal">&times;</button>
+      <form class="upload">
+        <div>
+          <h1>ADD CONTENTS OF PLANNER HERE</h1>
+        </div>
         <button class="btn upload__btn">
           <svg>
             <use href="src/img/icons.svg#icon-upload-cloud"></use>

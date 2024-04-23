@@ -1,5 +1,5 @@
 node_modules
 dist
-tempSecrets.js
+notForProd.js
 .parcel-cache
 .DS_Store
