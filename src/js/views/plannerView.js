@@ -2,15 +2,15 @@ import { state } from '../model.js';
 import View from './View.js';
 import icons from 'url:../../img/icons.svg';
 
-class addRecipeView extends View {
-  _parentElement = document.querySelector('.upload');
+class plannerView extends View {
+  _parentElement = document.querySelector('.planner');
   _window = document.querySelector('.view-planner-window');
-  _overlay = document.querySelector('.overlay');
+  _overlay = document.querySelector('.planner-overlay');
   _btnOpen = document.querySelector('.nav__btn--view-planner');
   _btnClose = document.querySelector('.btn--view-planner-close-modal');
 
-  _errorMessage = `Error loading pagination.`;
-  _message = 'Recipe was successfully uploaded';
+  _errorMessage = `Error loading planner.`;
+  _message = 'Planner successfully updated.';
 
   constructor() {
     super();
@@ -19,8 +19,8 @@ class addRecipeView extends View {
   }
 
   toggleWindow() {
-    this._overlay.classList.toggle('hidden');
-    this._window.classList.toggle('hidden');
+    this._overlay.classList.toggle('planner-hidden');
+    this._window.classList.toggle('planner-hidden');
   }
 
   _addHandlerShowWindow() {
@@ -32,16 +32,7 @@ class addRecipeView extends View {
     this._overlay.addEventListener('click', this.toggleWindow.bind(this));
   }
 
-  addHandlerUpload(handler) {
-    this._parentElement.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const dataArray = [...new FormData(this)];
-      const data = Object.fromEntries(dataArray);
-      handler(data);
-    });
-  }
-
   _generateMarkup() {}
 }
 
-export default new addRecipeView();
+export default new plannerView();
