@@ -248,16 +248,39 @@
     </div>
     <div class="planner-overlay planner-hidden"></div>
     <div class="view-planner-window planner-hidden">
-      <button class="btn--view-planner-close-modal">&times;</button>
+      <button class="btn--planner-close-modal">&times;</button>
+      <h1>Meal Planner</h1>
       <form class="planner">
         <div>
-          <h1>ADD CONTENTS OF PLANNER HERE</h1>
+          <ul class="planner__list">
+            <li class="planner_list-item monday">
+              <div>
+                <div>Mon</div>
+                <div>Date</div>
+                <div>image</div>
+                <div>recipe link</div>
+              </div>
+            </li>
+            <li class="planner_list-item tuesday">
+              <div>
+                <div>Tues</div>
+                <div>image</div>
+                <div>recipe link</div>
+              </div>
+            </li>
+            <li class="planner_list-item wednesday">
+              <div>
+                <div>Weds</div>
+                <div>image</div>
+                <div>recipe link</div>
+              </div>
+            </li>
+            <li class="planner_list-item thursday"></li>
+            <li class="planner_list-item friday"></li>
+          </ul>
         </div>
-        <button class="btn upload__btn">
-          <svg>
-            <use href="src/img/icons.svg#icon-upload-cloud"></use>
-          </svg>
-          <span>Upload</span>
+        <button class="btn planner__btn">
+          <span>Save</span>
         </button>
       </form>
     </div>

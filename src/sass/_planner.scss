@@ -12,7 +12,7 @@
   z-index: 1000;
   transition: all 0.5s;
 
-  .btn--close-modal {
+  .btn--planner-close-modal {
     font-family: inherit;
     color: inherit;
     position: absolute;
@@ -95,5 +95,15 @@
   &__btn {
     grid-column: 1 / -1;
     justify-self: center;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+  }
+
+  &__list-item {
+    width: 12.5%;
   }
 }

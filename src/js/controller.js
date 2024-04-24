@@ -142,6 +142,10 @@ const controlClearShoppingList = function () {
   shoppingListView.render(model.state.shoppingList);
 };
 
+const controlPlanner = function () {
+  console.log('planner controller');
+};
+
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);

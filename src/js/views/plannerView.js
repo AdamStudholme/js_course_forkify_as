@@ -7,7 +7,7 @@ class plannerView extends View {
   _window = document.querySelector('.view-planner-window');
   _overlay = document.querySelector('.planner-overlay');
   _btnOpen = document.querySelector('.nav__btn--view-planner');
-  _btnClose = document.querySelector('.btn--view-planner-close-modal');
+  _btnClose = document.querySelector('.btn--planner-close-modal');
 
   _errorMessage = `Error loading planner.`;
   _message = 'Planner successfully updated.';
@@ -26,6 +26,8 @@ class plannerView extends View {
   _addHandlerShowWindow() {
     this._btnOpen.addEventListener('click', this.toggleWindow.bind(this));
   }
+
+  addHandler;
 
   _addHandlerHideWindow() {
     this._btnClose.addEventListener('click', this.toggleWindow.bind(this));
