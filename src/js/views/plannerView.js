@@ -27,14 +27,36 @@ class plannerView extends View {
     this._btnOpen.addEventListener('click', this.toggleWindow.bind(this));
   }
 
-  addHandler;
+  addHandlerRenderPlanner(handler) {
+    this._btnOpen.addEventListener('click', function (e) {
+      handler();
+    });
+  }
 
   _addHandlerHideWindow() {
     this._btnClose.addEventListener('click', this.toggleWindow.bind(this));
     this._overlay.addEventListener('click', this.toggleWindow.bind(this));
   }
 
-  _generateMarkup() {}
+  _generateMarkup() {
+    return `
+      <div>
+        <ul class="planner__list">
+        ${this._data.map(plan => this._generateMarkupPreview(plan)).join('')}
+        </ul>
+      </div>`;
+  }
+
+  _generateMarkupPreview(plan) {
+    return `<li class="planner_list-item ${plan.day}">
+    <div>
+      <div>${plan.day}</div>
+      <div>${plan.date}</div>
+      <div>image</div>
+      <div>${plan.recipe}</div>
+    </div>
+  </li>`;
+  }
 }
 
 export default new plannerView();

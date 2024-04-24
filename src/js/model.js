@@ -16,7 +16,16 @@ export const state = {
   filters: {
     hideCompleteShopping: false,
   },
-  weeklyPlanner: [],
+  planner: {
+    currPlans: [
+      { day: 'Mon', date: new Date(), recipe: 'pasta1', servings: 4 },
+      { day: 'Mon', date: new Date(), recipe: 'pasta2', servings: 4 },
+      { day: 'Mon', date: new Date(), recipe: 'pasta3', servings: 4 },
+      { day: 'Mon', date: new Date(), recipe: 'pasta4', servings: 4 },
+      { day: 'Mon', date: new Date(), recipe: 'pasta5', servings: 4 },
+    ],
+    firstDateOnPage: new Date(),
+  },
 };
 
 const createRecipeObject = function (data) {

@@ -143,12 +143,14 @@ const controlClearShoppingList = function () {
 };
 
 const controlPlanner = function () {
-  console.log('planner controller');
+  plannerView.renderSpinner();
+  plannerView.render(model.state.planner.currPlans);
 };
 
 const init = function () {
   bookmarksView.addHandlerRender(controlBookmarks);
   recipeView.addHandlerRender(controlRecipes);
+  plannerView.addHandlerRenderPlanner(controlPlanner);
   shoppingListView.addHandlerRender(controlShopping);
   shoppingListView.addHandlerMarkComplete(controlItemComplete);
   shoppingListView.addHandlerClearList(controlClearShoppingList);
