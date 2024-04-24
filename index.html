@@ -251,9 +251,9 @@
       <button class="btn--planner-close-modal">&times;</button>
       <h1>Meal Planner</h1>
       <form class="planner">
-        <!-- <div>
+        <div>
           <ul class="planner__list">
-            <li class="planner_list-item monday">
+            <li class="planner__list-item">
               <div>
                 <div>Mon</div>
                 <div>Date</div>
@@ -261,27 +261,29 @@
                 <div>recipe link</div>
               </div>
             </li>
-            <li class="planner_list-item tuesday">
+            <li class="planner__list-item">
               <div>
                 <div>Tues</div>
                 <div>image</div>
                 <div>recipe link</div>
               </div>
             </li>
-            <li class="planner_list-item wednesday">
-              <div>
-                <div>Weds</div>
-                <div>image</div>
-                <div>recipe link</div>
-              </div>
+            <li class="planner__list-item">
+              <div>day</div>
+              <div>date</div>
+              <button class="planner__btn">
+                <svg class="planner__icon">
+                  <use href="src/img/icons.svg#icon-plus"></use>
+                </svg>
+              </button>
             </li>
-            <li class="planner_list-item thursday"></li>
-            <li class="planner_list-item friday"></li>
           </ul>
-        </div> -->
-        <button class="btn planner__btn">
-          <span>Save</span>
-        </button>
+        </div>
+        <span class="btn-container">
+          <button class="btn planner__btn">
+            <span>Save</span>
+          </button>
+        </span>
       </form>
     </div>
   </body>

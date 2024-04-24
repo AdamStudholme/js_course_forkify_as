@@ -16,3 +16,12 @@ export const SPOON_ANALYZE_POST_URL = `https://api.spoonacular.com/recipes/analy
 export const TIMEOUT_SEC = 10;
 export const RESULTS_PAGINATION = 10;
 export const MODAL_CLOSE_SEC = 2.5;
+export const DAYS_ARRAY = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];

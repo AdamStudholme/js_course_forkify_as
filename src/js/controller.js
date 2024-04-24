@@ -7,8 +7,8 @@ import paginationView from './views/paginationView.js';
 import bookmarksView from './views/bookmarksView.js';
 import shoppingListView from './views/shoppingListView.js';
 import addRecipeView from './views/addRecipeView.js';
-import { MODAL_CLOSE_SEC } from './config.js';
-
+import { DAYS_ARRAY, MODAL_CLOSE_SEC } from './config.js';
+import { GET_DATE_DETAILS, GET_DAYS_FROM_TODAY } from './helpers.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
@@ -143,8 +143,35 @@ const controlClearShoppingList = function () {
 };
 
 const controlPlanner = function () {
-  plannerView.renderSpinner();
-  plannerView.render(model.state.planner.currPlans);
+  //Should probably be put into the model
+  const dataForDisplay = [];
+  for (let i = 0; i < DAYS_ARRAY.length; i++) {
+    const details = GET_DATE_DETAILS(i);
+    console.log(details);
+
+    const plan = model.state.planner.currPlans.find(
+      day => day.date.toDateString() === details.unformattedDate.toDateString()
+    );
+    if (!plan)
+      dataForDisplay.push({
+        date: details,
+        recipe: null,
+        servings: null,
+      });
+    else {
+      details;
+      dataForDisplay.push({
+        date: details,
+        recipe: plan.recipe,
+        servings: plan.servings,
+      });
+    }
+  }
+  console.log(dataForDisplay);
+  console.log(model.state.recipe);
+
+  // plannerView.renderSpinner();
+  plannerView.render(dataForDisplay);
 };
 
 const init = function () {

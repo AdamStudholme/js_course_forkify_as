@@ -48,12 +48,26 @@ class plannerView extends View {
   }
 
   _generateMarkupPreview(plan) {
-    return `<li class="planner_list-item ${plan.day}">
+    if (plan.recipe === null)
+      return `<li class="planner__list-item" data-date=${plan.date.dateStr}>
+    <div>${plan.date.dayOfWeek}</div>
+    <div>${plan.date.dateStr}</div>
+    <button class="planner__btn" title="add recipe from bookmarks">
+      <svg class="planner__icon" >
+        <use href="${icons}#icon-plus"></use>
+      </svg>
+    </button>
+  </li>
+  `;
+    return `<li class="planner_list-item" data-date=${plan.date.dateStr}>
     <div>
-      <div>${plan.day}</div>
-      <div>${plan.date}</div>
-      <div>image</div>
-      <div>${plan.recipe}</div>
+      <div>${plan.date.dayOfWeek}</div>
+      <div>${plan.date.dateStr}</div>
+      <figure class="preview__fig">
+      <img src="${plan.recipe.image}" alt="${plan.recipe.title}" />
+    </figure>
+      <div>${plan.recipe.title}</div>
+      <div>Serves: ${plan.recipe.servings}</div>
     </div>
   </li>`;
   }

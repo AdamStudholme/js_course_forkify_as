@@ -1,7 +1,7 @@
 import { keys, API_URL, SPOON_ANALYZE_POST_URL } from './config.js';
 import { RESULTS_PAGINATION } from './config.js';
 // import { getJSON, sendJSON } from './helpers.js';
-import { AJAX, SPOON_AJAX } from './helpers.js';
+import { AJAX, SPOON_AJAX, getDaysFromToday } from './helpers.js';
 
 export const state = {
   recipe: {},
@@ -18,11 +18,36 @@ export const state = {
   },
   planner: {
     currPlans: [
-      { day: 'Mon', date: new Date(), recipe: 'pasta1', servings: 4 },
-      { day: 'Mon', date: new Date(), recipe: 'pasta2', servings: 4 },
-      { day: 'Mon', date: new Date(), recipe: 'pasta3', servings: 4 },
-      { day: 'Mon', date: new Date(), recipe: 'pasta4', servings: 4 },
-      { day: 'Mon', date: new Date(), recipe: 'pasta5', servings: 4 },
+      {
+        date: new Date(),
+        recipe: {
+          id: '5ed6604591c37cdc054bcf01',
+          title: "Pasta 'ncasciata (Aubergine wrapped pasta dome)",
+          publisher: 'BBC Good Food',
+          sourceUrl:
+            'http://www.bbcgoodfood.com/recipes/3309/pasta-ncasciata-aubergine-wrapped-pasta-dome',
+          image: 'http://forkify-api.herokuapp.com/images/3309_MEDIUMc520.jpg',
+          servings: 4,
+          cookingTime: 75,
+        },
+      },
+      {
+        date: (() => {
+          date = new Date();
+          date.setDate(date.getDate() + 4);
+          return date;
+        })(),
+        recipe: {
+          id: '5ed6604591c37cdc054bcf01',
+          title: "Pasta 'ncasciata (Aubergine wrapped pasta dome)",
+          publisher: 'BBC Good Food',
+          sourceUrl:
+            'http://www.bbcgoodfood.com/recipes/3309/pasta-ncasciata-aubergine-wrapped-pasta-dome',
+          image: 'http://forkify-api.herokuapp.com/images/3309_MEDIUMc520.jpg',
+          servings: 4,
+          cookingTime: 75,
+        },
+      },
     ],
     firstDateOnPage: new Date(),
   },

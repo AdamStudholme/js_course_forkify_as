@@ -43,9 +43,7 @@
 }
 
 .planner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem 6rem;
+  margin-top: 2rem;
 
   &__column {
     display: grid;
@@ -81,7 +79,49 @@
       grid-column: 1 / span 2;
       justify-self: center;
       margin-top: 1rem;
+      background: none !important;
+      border: none !important;
     }
+
+    &__btn {
+      height: 100%;
+      font-family: inherit;
+      color: inherit;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 0 1.5rem;
+      transition: all 0.3s;
+
+      display: flex;
+      align-items: center;
+
+      svg {
+        height: 2.4rem;
+        width: 2.4rem;
+        fill: $color-primary;
+        margin-right: 0.7rem;
+        transform: translateY(-1px);
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        background-color: $color-grey-light-2;
+      }
+    }
+  }
+
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+    fill: $color-primary;
+    margin-right: 1.1rem;
+    flex: 0 0 auto;
+    margin-top: 0.1rem;
   }
 
   &__heading {
@@ -98,12 +138,11 @@
   }
 
   &__list {
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     list-style: none;
   }
 
   &__list-item {
-    width: 12.5%;
   }
 }

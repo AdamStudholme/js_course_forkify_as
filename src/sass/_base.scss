@@ -16,7 +16,7 @@ $bp-medium: 61.25em; // 980px
 $bp-small: 37.5em; // 600px
 $bp-smallest: 31.25em; // 500px
 
-$font-primary: "Nunito Sans", sans-serif;
+$font-primary: 'Nunito Sans', sans-serif;
 
 * {
   margin: 0;
@@ -39,7 +39,7 @@ html {
 }
 
 body {
-  font-family: "Nunito Sans", sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   font-weight: 400;
   line-height: 1.6;
   color: $color-grey-dark-1;
@@ -62,8 +62,8 @@ body {
   grid-template-rows: 10rem minmax(100rem, auto);
   grid-template-columns: 1fr 2fr;
   grid-template-areas:
-    "head head"
-    "list recipe";
+    'head head'
+    'list recipe';
 
   @media only screen and (max-width: $bp-large) {
     max-width: 100%;
@@ -71,7 +71,13 @@ body {
     border-radius: 0;
   }
 }
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10rem;
+  max-height: 5rem;
+}
 
-input[type="checkbox"]:checked + label {
+input[type='checkbox']:checked + label {
   text-decoration: line-through;
 }
